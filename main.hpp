@@ -4,15 +4,23 @@ using namespace std;
 
 bool isPrime(int num) {
     if (num <= 1) return false;
-    for (int i = 2; i <= sqrt(num); i++)
-    if (num % i == 0) return false;
+    for (int i = 2; i <= sqrt(num); i++) {
+        if (num % i == 0) return false;
+    }
     return true;
 }
 
 void getTwoValues (int &begin, int &end) {
     do {
+        cout << "Enter two numbers (begin < end): ";
         cin >> begin >> end;
-    } while (begin >= end);
+        if (begin >= end) {
+            cout << "Invalid input! 'begin' must be less than 'end'. Try again. " << endl;
+        }
+        if (begin < 0 || end < 0) {
+            cout << "Enter positive numbers. " << endl;
+        }
+    } while (begin >= end || begin < 0 || end < 0);
 }
 
 int getNextPrime(int begin) {
@@ -28,6 +36,6 @@ int getPrevPrime(int end) {
 int main() {
     int begin, end;
     getTwoValues(begin, end);
-    cout << "next prime after " << begin << " is " << getNextPrime(begin) << endl;
-    cout << "previous prime before " << end << " is " << getPrevPrime(end) << endl;
+    cout << "Next prime after " << begin << " is " << getNextPrime(begin) << endl;
+    cout << "Previous prime before " << end << " is " << getPrevPrime(end) << endl;
 }
